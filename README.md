@@ -1,29 +1,34 @@
 tool for measuring time of execution of async code
 
-# START / END
+## START / END
 ```
-asyncTimer = require '@sbks/async-timer'
+var asyncTimer = require('async-timer');
 
-timer = asyncTimer()
+var timer = asyncTimer();
 
-timer.start 'KEY1'
-setTimeout ->
-  timer.end 'KEY1'
-  console.log timer.getMeasured()
-, 500
+var task = function () {
+  timer.end('KEY1');
+  console.log(timer.getMeasured());
+}
+
+timer.start('KEY1');
+setTimeout(task, 500);
 ```
 
-# WRAP
+## WRAP
 ```
-asyncTimer = require '@sbks/async-timer'
+var asyncTimer = require('async-timer');
 
-timer = asyncTimer()
+var timer = asyncTimer();
 
-task = (next) ->
-  setTimeout next, 500
+var task = function (next) {
+  setTimeout(next, 500);
+}
 
-wrapped = timer.wrap task, 'KEY2'
+var callback = function (next) {
+  console.log(timer.getMeasured());
+}
 
-wrapped ->
-  console.log timer.getMeasured()
+var wrapped = timer.wrap(task, 'KEY2');
+wrapped(callback);
 ```
