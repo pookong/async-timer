@@ -1,6 +1,6 @@
 {
   "name": "async-timer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "tool for measuring time of execution of async code",
   "main": "index.js",
   "homepage": "https://github.com/pookong/async-timer#readme",
